@@ -13,6 +13,7 @@ class Extension implements PhpunitExtension
 {
     public function bootstrap(Configuration $configuration, EventFacade $facade, ParameterCollection $parameters): void
     {
+        $facade->registerSubscriber(new ApplicationStartedSubscriber());
         $facade->registerSubscriber(new ExecutionFinishedSubscriber());
     }
 }
