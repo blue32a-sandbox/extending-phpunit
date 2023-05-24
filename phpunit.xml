@@ -10,6 +10,10 @@
     cacheDirectory=".phpunit.cache"
     backupStaticProperties="false"
 >
+    <extensions>
+        <bootstrap class="Ext\Runner\Extension" />
+    </extensions>
+
     <coverage/>
     <testsuites>
         <testsuite name="Unit">
