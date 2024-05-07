@@ -15,6 +15,7 @@ use PHPUnit\Runner\Extension\Extension as PhpunitExtension;
 use PHPUnit\Runner\Extension\Facade as EventFacade;
 use PHPUnit\Runner\Extension\ParameterCollection;
 use PHPUnit\TextUI\Configuration\Configuration;
+use PHPUnit\TextUI\Output\DefaultPrinter;
 
 class Extension implements PhpunitExtension
 {
@@ -22,10 +23,11 @@ class Extension implements PhpunitExtension
     {
         $facade->replaceProgressOutput();
 
+        $printer = DefaultPrinter::standardOutput();
         $facade->registerSubscribers(
             new ApplicationStartedSubscriber(),
             new ExecutionFinishedSubscriber(),
-            new FailedSubscriber(),
+            new FailedSubscriber($printer),
             new PassedSubscriber(),
             new SkippedSubscriber(),
             new TestFinishedSubscriber(),

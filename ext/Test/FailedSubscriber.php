@@ -6,15 +6,20 @@ namespace Ext\Test;
 
 use PHPUnit\Event\Test\Failed;
 use PHPUnit\Event\Test\FailedSubscriber as FailedSubscriberInterface;
+use PHPUnit\TextUI\Output\Printer;
+use PHPUnit\Util\Color;
 
 class FailedSubscriber implements FailedSubscriberInterface
 {
-    public function __construct()
+    readonly private Printer $printer;
+
+    public function __construct(Printer $printer)
     {
+        $this->printer = $printer;
     }
 
     public function notify(Failed $event): void
     {
-        echo $event->asString() . PHP_EOL;
+        $this->printer->print(Color::colorizeTextBox('bg-red, fg-white', 'F') . PHP_EOL);
     }
 }
