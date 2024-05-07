@@ -11,13 +11,16 @@
     backupStaticProperties="false"
 >
     <extensions>
-        <bootstrap class="Ext\Runner\Extension" />
+        <bootstrap class="Ext\Extension" />
     </extensions>
 
     <coverage/>
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+        <testsuite name="Sample">
+            <directory suffix="SampleTest.php">./tests</directory>
         </testsuite>
     </testsuites>
     <source>
